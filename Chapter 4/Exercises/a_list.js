@@ -1,4 +1,4 @@
-// A list
+// A LIST
 // Objects, as generic blobs of values, can be used to build all sorts of data structures. A common data structure is the list (not to be confused with array). A
 // list is a nested set of objects, with the first object holding a reference to the
 // second, the second to the third, and so on.
@@ -49,7 +49,7 @@ function arrayToList(arr) {
     return list
 }
 
-console.log(arrayToList([1, 2, 3]))
+let testList = arrayToList([1, 2, 3])
 
 
 function listToArray(list) {
@@ -60,4 +60,19 @@ function listToArray(list) {
     return arr
 }
 
-console.log(listToArray(arrayToList([1, 2, 3])))
+
+
+function prepend(element, list) {
+    return {
+        value: element,
+        rest: list
+    }
+}
+
+function nth(list, n) {
+    if (!list) return undefined;
+    else if (n == 0) return list.value;
+    else return nth(list.rest, n - 1);
+}
+
+console.log(nth(testList, 2))
