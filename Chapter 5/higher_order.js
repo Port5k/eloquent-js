@@ -102,7 +102,6 @@ function reduce(array, combine, start) {
 
 function characterCount(script) {
     return script.ranges.reduce((count, [from, to]) => {
-        console.log(count)
         return count + (to - from);
     }, 0);
 }
