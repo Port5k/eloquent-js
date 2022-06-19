@@ -66,3 +66,47 @@ const SCRIPTS = require("./scripts")
 // })
 
 // ["A", "B"].forEach(l => console.log(l));
+
+
+
+function filter(array, test) {
+    let passed = [];
+    for (let element of array) {
+        if (test(element)) {
+            passed.push(element);
+        }
+    }
+    return passed;
+}
+// console.log(filter(SCRIPTS, script => script.living));
+
+
+function map(array, transform) {
+    let mapped = [];
+    for (let element of array) {
+        mapped.push(transform(element));
+    }
+    return mapped;
+}
+
+// let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
+// console.log(map(rtlScripts, s => s.name))
+
+function reduce(array, combine, start) {
+    let current = start;
+    for (let element of array) {
+        current = combine(current, element)
+    }
+    return current
+}
+
+function characterCount(script) {
+    return script.ranges.reduce((count, [from, to]) => {
+        console.log(count)
+        return count + (to - from);
+    }, 0);
+}
+
+console.log(SCRIPTS.reduce((a, b) => {
+    return characterCount(a) < characterCount(b) ? b : a;
+}));
