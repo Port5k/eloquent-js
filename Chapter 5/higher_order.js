@@ -106,6 +106,23 @@ function characterCount(script) {
     }, 0);
 }
 
-console.log(SCRIPTS.reduce((a, b) => {
-    return characterCount(a) < characterCount(b) ? b : a;
-}));
+// console.log(SCRIPTS.reduce((a, b) => {
+//     return characterCount(a) < characterCount(b) ? b : a;
+// }));
+
+let biggest = null;
+for (let script of SCRIPTS) {
+    if (biggest == null || characterCount(biggest) < characterCount(script)) {
+        biggest = script;
+    }
+}
+
+function average(array) {
+    return array.reduce((a, b) => a + b) / array.length;
+}
+
+console.log(Math.round(average(
+    SCRIPTS.filter(s => s.living).map(s => s.year))));
+
+console.log(Math.round(average(
+    SCRIPTS.filter(s => !s.living).map(s => s.year))));
